@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
-
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,3 +21,12 @@ Route::get('/ping', function () {
 
 // Student Resource Routes
 Route::apiResource('students', StudentController::class);
+Route::get('/test', function () {
+    \Illuminate\Support\Facades\Log::info('Test route was hit!');
+    return response()->json(['message' => 'Test route works'], 200);
+});
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+
+?>
